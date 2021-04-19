@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<!-- TAG QUE LIGA SETUP.XHTML AO TEMPLATE/CONTENT -->
+<ui:composition template="_template.xhtml">
+
+<!-- definindo em qual parte do TEMPLATE vai esse codigo -->
+<ui:define name="content">
+
+<!-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^abre form ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-->
+ <h:form> 
+ 
+ <!--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ABRE CARD ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-->
+  <p:card class= "card-form">
+ 	<p:messages><p:autoUpdate/></p:messages>
+ 	
+ <!-- TITULO FORM -->       
+     <f:facet name="title">
+     Register
+     </f:facet>
+  
+     <p:messages/>
+	
+	 <!-- sequencia de campos do form -->
+	 <!-- GRUPO NOME -->
+	 		
+			<div class="p-col">
+            <p:outputLabel for="@next" value="Name: (@Size(min=2,max=5))"/>
+            <div class="p-col">
+            <p:inputText value="#{setupBean.setup.name}" required="true" label="Name"/>
+            <p:message for="@previous"/>
+            <h:outputText value="#{beanValidationView.name}"/>
+		 	</div>
+		 	</div>
+		 	
+		<!-- GRUPO EMAIL -->
+		<div class="p-col">
+		<p:outputLabel for="@next" value="Email: (@Size(min=2,max=5))"/>
+		<div class="p-col">
+            <p:inputText value="#{setupBean.setup.email}" required="true" label="Email"/>
+            <p:message for="@previous"/>
+            <h:outputText value="#{beanValidationView.email}"/>
+		 </div>
+		 </div>
+		 
+		<!-- GRUPO DATA -->
+        <div class="p-col">
+        <label for="date" class="p-col-fixed" style="width:100px">Date of Birth</label>
+        <div class="p-col">
+            <p:inputMask id="date" value="#{setupBean.setup.date}" required="true" mask="99/99/9999"/>
+        </div>
+        </div>
+        
+		<!-- GRUPO SENHA -->
+		
+        <h5 class="p-mt-0">Create Password</h5>
+        <div class="p-field p-grid">
+            <p:outputLabel for="pwd1" styleClass="p-col-fixed" style="width:100px" value="Password"/>
+            <div class="p-col">
+                <p:password id="pwd1" value="#{setupBean.setup.password5}" match="pwd2" label="Password 1" required="true"/>
+            </div>
+        </div>
+
+        <div class="p-field p-grid">
+            <p:outputLabel for="pwd2" styleClass="p-col-fixed" style="width:100px" value="Password"/>
+            <div class="p-col">
+                <p:password id="pwd2" value="#{setupBean.setup.password5}" label="Password 2" required="true"/>
+            </div>
+        </div>
+        
+        <!--  <p:commandButton update="@form" value="Save"/>
+
+        <p:messages id="messages" showDetail="true">
+            <p:autoUpdate/>
+        </p:messages> -->
+		
+	<!-- buttons submit -->
+	<f:facet name="footer">
+	
+		<!-- CRIADA ACTION PARA A CLASSE DE PERSISTENCIA -->
+        <p:commandButton icon="pi pi-check" value="Save" action="#{setupBean.save}"/>
+        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
+    </f:facet>
+  </p:card>
+ </h:form>
+</ui:define>	
+</ui:composition>
+
+</html>
